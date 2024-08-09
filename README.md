@@ -1,50 +1,32 @@
-# React + TypeScript + Vite
+# Monkitype
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Monkitype is a clone of the popular Monkeytype typing test app, designed to test and improve your typing speed and accuracy. Built with ReactJS and TypeScript, Monkitype offers a seamless user experience with added features to enhance the challenge. The app is deployed on Vercel for easy access.
 
-Currently, two official plugins are available:
+## Key Features
+- **Two Typing Modes**: Choose between a 30-second or 60-second typing test.
+- **Accuracy & WPM Display**: After each test, view your typing accuracy and words per minute (WPM) on the score screen.
+- **Backspace/Delete Limit**: Users can only use the backspace or delete keys up to 10 times per run, after which these keys are disabled to encourage accurate typing.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Short Description
+Monkitype challenges users to type a random paragraph within a set time limit, testing both speed and accuracy. The app displays performance metrics after each test, allowing users to track their progress. A unique feature limits the use of the backspace and delete keys to make the test more challenging, encouraging users to type with greater precision.
 
-## Expanding the ESLint configuration
+## Snippets
+<h3>Monkitype Test</h3>
+<img src="./public/monkitype1.png" width="600" />
+<h3>Scores</h3>
+<img src="./public/monkitype2.png" width="600" />
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Used
+- **Frontend**: ReactJS with TypeScript
+- **Deployment**: Vercel
 
-- Configure the top-level `parserOptions` property like this:
+Monkitype combines a clean interface with practical features to offer a fun and effective typing practice tool.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## How to Use
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1. Clone the repository: `git clone https://github.com/sarthakmishraa/monki-type.git`
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Feel free to clone the repository and explore the project. Contributions are welcome!
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Contributing
+Contributions are welcome! Please fork the repository and submit a pull request.
