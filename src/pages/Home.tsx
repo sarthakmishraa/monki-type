@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 import { texts } from "../assets/text";
@@ -11,8 +11,11 @@ export const Home = () => {
     const [isTyping, setIsTyping] = useState<boolean>(false);
     const [typedText, setTypedText] = useState<string | undefined>();
     const [timerStarted, setTimerStarted] = useState<boolean>(false);
+    const [backspaceCount, setBackspaceCount] = useState<number>(10);
 
     const navigate = useNavigate();
+
+    const writingSpaceRef = useRef<any>();
 
     const text = texts[index];
     
@@ -48,11 +51,37 @@ export const Home = () => {
 
     const handleTimerReset = (time: number) => {
         setTimer(time);
-        setTimerValue(timer);
+        setTimerValue(time);
         setIsTyping(false);
         setTypedText("");
         setTimerStarted(false);
+        setBackspaceCount(10);
     };
+
+    const handleRestart = () => {
+        setTimer(timerValue);
+        setIsTyping(false);
+        setTypedText("");
+        setTimerStarted(false);
+        setBackspaceCount(10);
+        writingSpaceRef.current.value = "";
+        writingSpaceRef.current.focus();
+    }
+
+    const handleCopyPaste = (event: any) => {
+        event?.preventDefault();
+    };
+
+    const handleBackspace = (event: any) => {
+        if(event.key === "Backspace" || event.key === "Delete") {
+            if(backspaceCount === 0) {
+                event?.preventDefault();
+            }
+            else {
+                setBackspaceCount(backspaceCount - 1);
+            }
+        }
+    }
 
     return(
         <div className="home-container">
@@ -60,15 +89,30 @@ export const Home = () => {
             <div className="home-toolbox">
                 <button disabled={isTyping} onClick={() => handleTimerReset(30)} >30 sec</button>
                 <button disabled={isTyping} onClick={() => handleTimerReset(60)} >60 sec</button>
+                <button onClick={() => handleRestart()} >Restart</button>
             </div>
             <div>
-                <p>Time Left: { timer }</p>
+                {isTyping ? (
+                    <>
+                        <p className="timer">Time Left: { timer } sec</p>
+                        <p className="rules">Backspace/Delete key hits left: { backspaceCount }</p>
+                    </>
+                ):(
+                    <>
+                        <p className="timer">Total Time: { timer } sec</p>
+                        <p className="rules">Note: You are allowed to hit backspace/delete key { backspaceCount } times</p>
+                    </>
+                )}
                 <label className="writing-space-label">{ text }</label>
                 <textarea
                     placeholder="start typing..."
                     autoFocus
                     className="writing-space-area"
                     onChange={handleChange}
+                    onPaste={handleCopyPaste}
+                    onCopy={handleCopyPaste}
+                    onKeyDown={handleBackspace}
+                    ref={writingSpaceRef}
                 >
                 </textarea>
             </div>

@@ -41,11 +41,19 @@ button:disabled {
   padding: 10px;
 }
 
+.timer {
+  font-size: x-large;
+}
+
+.rules {
+  font-size: larger;
+}
+
 .writing-space-label {
   position: relative;
   z-index: 2;
   font-family: monospace;
-  color: gray;
+  color: yellow;
 }
 
 .writing-space-area {
@@ -56,7 +64,7 @@ button:disabled {
 }
 
 .writing-space-area, .writing-space-label {
-  font-size: x-large;
+  font-size: xx-large;
   background-color: #242424;
   height: 180px;
   width: 480px;
@@ -72,4 +80,11 @@ button:disabled {
 
 .result-content {
   text-align: center;
+}
+
+@media screen and (min-width: 1400px) {
+  body {
+    padding-left: 400px;
+    padding-right: 400px;
+  }
 }

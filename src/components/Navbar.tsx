@@ -1,7 +1,7 @@
 export const Navbar = () => {
     return(
         <div>
-            <h3>monkitype</h3>
+            <h1>monkitype</h1>
         </div>
     )
 }

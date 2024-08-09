@@ -1,8 +1,13 @@
 export const monkitype = (words: string, typedWords: string) => {
     if(!words || !typedWords) {
-        return "Words not defined"
+        return "Words not defined";
     }
-    const noOfCharsTyped = typedWords.length;
+    let noOfCharsTyped = typedWords.length;
+
+    if(words.length < typedWords.length) {
+        noOfCharsTyped = words.length;
+    };
+
     let correct = 0;
     
     for(let i=0; i<noOfCharsTyped; i++) {
